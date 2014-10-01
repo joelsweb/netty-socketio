@@ -167,6 +167,7 @@ public class EncoderHandler extends ChannelOutboundHandlerAdapter {
 
         if (configuration.getOrigin() != null) {
             HttpHeaders.addHeader(res, ACCESS_CONTROL_ALLOW_ORIGIN, configuration.getOrigin());
+            HttpHeaders.addHeader(res, ACCESS_CONTROL_ALLOW_CREDENTIALS, Boolean.TRUE);
         } else {
             String origin = channel.attr(ORIGIN).get();
             if (origin != null) {
@@ -174,6 +175,7 @@ public class EncoderHandler extends ChannelOutboundHandlerAdapter {
                 HttpHeaders.addHeader(res, ACCESS_CONTROL_ALLOW_CREDENTIALS, Boolean.TRUE);
             } else {
                 HttpHeaders.addHeader(res, ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+                HttpHeaders.addHeader(res, ACCESS_CONTROL_ALLOW_CREDENTIALS, Boolean.TRUE);
             }
         }
     }
